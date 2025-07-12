@@ -9,15 +9,20 @@ import (
 )
 
 type Mailer struct {
-	Host     string
-	Port     string
-	Username string
-	Password string
+	Host      string
+	Port      string
+	Username  string
+	Password  string
+	sendEmail func(addr string, auth smtp.Auth, from string, to []string, msg []byte) error
 }
 
 func New(host, port, username, password string) *Mailer {
 	return &Mailer{
-		host, port, username, password,
+		Host:      host,
+		Port:      port,
+		Username:  username,
+		Password:  password,
+		sendEmail: smtp.SendMail,
 	}
 }
 
@@ -47,7 +52,7 @@ func (m *Mailer) Send(config *config.Config) error {
 
 	// Authenticate and send email
 	auth := smtp.PlainAuth("", m.Username, m.Password, m.Host)
-	if err := smtp.SendMail(addr, auth, m.Username, recepients, []byte(msg.String())); err != nil {
+	if err := m.sendEmail(addr, auth, m.Username, recepients, []byte(msg.String())); err != nil {
 		return fmt.Errorf("Failed to send email: %w", err)
 	}
 
