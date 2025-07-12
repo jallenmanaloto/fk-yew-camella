@@ -49,8 +49,8 @@ Here's a breakdown of what each field does:
 | `email`        | string            | Your Gmail address (the sender)                                            |
 | `password`     | string            | Your Gmail App Password |
 | `enable`       | boolean           | Set to `true` to send, `false` to pause                                    |
-| `subject`      | string            | Email subject line — express your frustration here                         |
-| `message_body` | string            | Body of the email                                                           |
+| `subject`      | string            | Email subject line                       |
+| `message_body` | string            | Body of the email — express your frustration here                                                            |
 | `to`           | array of string   | Main recipients                                                             |
 | `cc`           | array of string   | Optional — feel free to involve other people in your frustration                                     |
 | `bcc`          | array of string   | Optional — idk why I put this, but use it if you wish to                              |
@@ -73,6 +73,13 @@ Example:
   "cron": ""
 }
 ```
+### 3. Generate the scheduler workflow
+This step creates the .github/workflows/scheduler.yml file based on your config:
+```bash
+go run . --generate
+```
+### 4. Commit the generated workflow
+GitHub won't run the scheduled mailer unless the workflow exists in the repo.
 
 ## ⚙️ How It Works
 When the app runs, it reads your `editme.json`.
@@ -81,9 +88,9 @@ It generates a GitHub Actions workflow based on your selected schedule.
 
 It sets up your Go environment and sends the email using Gmail SMTP.
 
-The email will continue sending until you set "`enable": false`.
+The email will continue sending until you set `"enable": false`.
 
-You don't need your PC to be online. Let this devil deliver your wrath routinely
+You don't need your PC to be online. Let this devil deliver your wrath consistently
 
 ##  🐢 Why This Exists
 Aren't we all tired of manually sending follow-ups? So now, they get reminders from us... every day. Until we get what we want. This app was born out of that pain and pettiness. You're welcome to fork it for your own war.
