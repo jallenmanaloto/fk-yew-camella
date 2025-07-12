@@ -18,9 +18,6 @@ func ScheduledWorkflow(cron, path string) {
 	if err := os.WriteFile(path, []byte(c), 0644); err != nil {
 		panic(err)
 	}
-
-	// Log that the workflow was successfully generated -- for our sanity
-	fmt.Printf("Workflow successfully generated at %s", path)
 }
 
 func content(cron string) string {
