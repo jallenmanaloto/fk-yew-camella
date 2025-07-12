@@ -1,0 +1,11 @@
+{
+  "email": "your-own@email.com",
+  "enable": true,
+  "password": "google-app-password",
+  "message_body": "This is the message of the email, make it really looooooong looooong maaaaaaaaaaaaan\r\n\r\nThanks",
+  "to": ["target@email.com", "another@email.com"],
+  "cc": ["optional-cc@email.com"],
+  "bcc": ["optional-bcc@email.com"],
+  "schedule": "daily",
+  "subject": "I'm tired of following up."
+}
