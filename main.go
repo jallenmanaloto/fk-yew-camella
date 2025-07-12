@@ -1,6 +1,8 @@
 package main
 
 import (
+	"path/filepath"
+
 	"github.com/fk-yew-camella/config"
 	"github.com/fk-yew-camella/generator"
 	"github.com/fk-yew-camella/mailer"
@@ -21,7 +23,8 @@ func main() {
 
 	// Generate github workflow to run the app on schedule
 	cron := config.CronExpression()
-	generator.ScheduledWorkflow(cron)
+	targetPath := filepath.Join(".github", "workflows", "scheduler.yml")
+	generator.ScheduledWorkflow(cron, targetPath)
 
 	// Initialize mailer and send the email
 	m := mailer.New(

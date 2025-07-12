@@ -6,12 +6,11 @@ import (
 	"path/filepath"
 )
 
-func ScheduledWorkflow(cron string) {
+func ScheduledWorkflow(cron, path string) {
 	c := content(cron)
 
 	// Write content to .github/workflows/scheduler.yml file
 	// Panic since this will not run the app on the defined schedule preference
-	path := filepath.Join(".github", "workflows", "scheduler.yml")
 	if err := os.MkdirAll(filepath.Dir(path), os.ModePerm); err != nil {
 		panic(err)
 	}
