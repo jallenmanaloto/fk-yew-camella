@@ -19,17 +19,15 @@ type Config struct {
 	To          []string `json:"to"`
 }
 
-const CONFIG_PATH = "editme.json"
-
-func Load() (*Config, error) {
-	file, err := os.ReadFile(CONFIG_PATH)
+func Load(path string) (*Config, error) {
+	file, err := os.ReadFile(path)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to read config file from path: %s, err: %w", CONFIG_PATH, err)
+		return nil, fmt.Errorf("Failed to read config file from path: %s, err: %w", path, err)
 	}
 
 	var config Config
 	if err := json.Unmarshal(file, &config); err != nil {
-		return nil, fmt.Errorf("Failed to parse file from path: %s, err: %w", CONFIG_PATH, err)
+		return nil, fmt.Errorf("Failed to parse file from path: %s, err: %w", path, err)
 	}
 
 	return &config, nil

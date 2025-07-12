@@ -6,8 +6,10 @@ import (
 	"github.com/fk-yew-camella/mailer"
 )
 
+const CONFIG_PATH = "editme.json"
+
 func main() {
-	config, err := config.Load()
+	config, err := config.Load(CONFIG_PATH)
 	if err != nil {
 		panic(err) // what's the use if we can't load the config file, right?
 	}
