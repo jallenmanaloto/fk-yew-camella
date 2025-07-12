@@ -1,0 +1,22 @@
+name: Generate Scheduler
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '^1.23'
+
+      - name: Run app to generate scheduler.yml
+        run: go run .
